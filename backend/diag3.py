@@ -29,7 +29,7 @@ emails = [
     "comprador.prueba.mp1@example.com",  # email normal
     "compradorPrueba@gmail.com",  # email normal
     "test_user_1234567@testuser.com",  # formato clásico de usuarios de prueba
-    "test_payer_9876543210@testuser.com",  # formato de la doc
+    "test_payer_9876543210@testuser.com",  # formato clásico de usuarios de prueba
 ]
 for e in emails:
     r = requests.post(
