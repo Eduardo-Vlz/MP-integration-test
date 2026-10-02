@@ -1,0 +1,52 @@
+/* Estilos globales del proyecto. CSS puro con variables, sin framework.
+ *
+ * Convenciones de clases:
+ * - `.container` / `.narrow`: ancho máximo del contenido.
+ * - `.row` / `.stack`: flex horizontal / vertical. `.spread` las separa.
+ * - `.card`: superficie elevada. `.grid`: rejilla responsive del catálogo.
+ * - `.two-cols`: checkout en dos columnas; colapsa a una bajo 760 px.
+ * - `.field`: punto de anclaje de un Secure Field (`.field iframe` lo llena).
+ * - `.option`: tarjeta seleccionable del checkout; `.active` marca la elegida.
+ * - `.badge` + modificadores: estado de la orden. `.debug`: datos de depuración.
+ * - `.error` / `.muted` / `.small`: utilidades de texto.
+ *
+ * Los colores viven en `:root`, así que cambiar la paleta entera son 6 líneas. */
+
+:root { --bg:#f5f6f8; --card:#fff; --text:#1f2430; --muted:#6b7280; --brand:#009ee3; --border:#e2e5ea; }
+* { box-sizing: border-box; }
+body { margin:0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; background:var(--bg); color:var(--text); }
+a { color: var(--brand); text-decoration: none; }
+h1 { margin: 20px 0 12px; } h2 { margin: 0; font-size: 18px; }
+.container { max-width: 1000px; margin: 0 auto; padding: 0 16px 40px; }
+.container.narrow { max-width: 460px; padding-top: 60px; }
+.header { background: var(--card); border-bottom: 1px solid var(--border); padding: 12px 0; }
+.header .container { padding-bottom: 0; }
+.row { display:flex; align-items:center; gap:12px; flex-wrap: wrap; }
+.spread { justify-content: space-between; }
+.stack { display:flex; flex-direction:column; gap:12px; }
+.card { background: var(--card); border:1px solid var(--border); border-radius:12px; padding:16px; color: inherit; }
+.narrow-card { max-width: 560px; }
+.grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap:16px; }
+.emoji { font-size: 48px; text-align:center; }
+.two-cols { display:grid; grid-template-columns: 1.6fr 1fr; gap:16px; align-items:start; }
+@media (max-width: 760px) { .two-cols { grid-template-columns: 1fr; } }
+.muted { color: var(--muted); } .small { font-size: 13px; }
+.error { color:#b42318; background:#fef3f2; border:1px solid #fecdca; padding:8px 12px; border-radius:8px; margin:0; word-break: break-word; }
+button { background: var(--brand); color:#fff; border:0; border-radius:8px; padding:10px 16px; font-size:15px; cursor:pointer; }
+button:disabled { opacity:.6; cursor: default; }
+button.secondary { background:#eef1f5; color: var(--text); }
+button.small { padding: 4px 10px; font-size: 13px; }
+input, select { padding:10px 12px; border:1px solid var(--border); border-radius:8px; font-size:15px; background:#fff; }
+input[type=radio], input[type=checkbox] { padding:0; }
+.field { height: 42px; padding: 0 12px; border:1px solid var(--border); border-radius:8px; background:#fff; display:flex; align-items:center; }
+.field iframe { width: 100%; }
+.option { display:flex; align-items:center; gap:10px; border:1px solid var(--border); border-radius:10px; padding:10px 12px; cursor:pointer; }
+.option.active { border-color: var(--brand); background:#f0f9ff; }
+.option span:first-of-type { flex:1; }
+hr { border:0; border-top:1px solid var(--border); width:100%; }
+.badge { display:inline-block; padding:4px 10px; border-radius:999px; font-size:13px; font-weight:600; background:#eef1f5; }
+.badge.approved { background:#dcfae6; color:#067647; }
+.badge.pending { background:#fef0c7; color:#b54708; }
+.badge.rejected { background:#fee4e2; color:#b42318; }
+.debug { background:#f8fafc; border:1px dashed var(--border); border-radius:8px; padding:10px; display:flex; flex-direction:column; gap:4px; }
+table { width:100%; border-collapse: collapse; } td { padding:6px 0; border-bottom:1px solid var(--border); }

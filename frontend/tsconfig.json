@@ -1,0 +1,34 @@
+{
+  // TypeScript estricto. Este archivo lo genera Next y se deja casi como está;
+  // los comentarios son válidos porque tsconfig se lee como JSONC, no JSON puro.
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    // No se revisan los .d.ts de node_modules: Next y React 19 usan tipos que
+    // generan ruido sin aportar nada a este proyecto.
+    "skipLibCheck": true,
+    // Errores en tiempo de compilación, no en producción.
+    "strict": true,
+    // `tsc` solo comprueba tipos; el bundling es cosa de Next.
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    // Resolución de módulos al estilo de bundler, que es lo que espera Next 15.
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    // Cada archivo debe poder transpilarse de forma aislada.
+    "isolatedModules": true,
+    // Next se encarga de convertir JSX; TS solo debe conservarlo.
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [{ "name": "next" }],
+
+    // Alias `@/*` → raíz del frontend. Es lo que permite los imports como
+    // `@/lib/api` en lugar de rutas relativas con `../../`.
+    "paths": { "@/*": ["./*"] }
+  },
+  // `.next/types` lo regenera `next dev` con los tipos de cada ruta.
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
+}

@@ -1,0 +1,22 @@
+# Dependencias del backend. El orden no importa; los `>=` acotan la versión mayor
+# para que una actualización no rompa nada sin avisar.
+#
+# Instalación: `pip install -r requirements.txt` (con el venv activado).
+# Este archivo NO fija versiones exactas a propósito: es un proyecto de pruebas,
+# y un pin exacto estorbaría más que ayudaría.
+
+Django>=5.0,<6.0               # El framework: ORM, URLs, admin, gestión.
+djangorestframework>=3.15      # `APIView`, serializers y autenticación por Token.
+django-cors-headers>=4.3       # Middleware que responde a los preflight del navegador.
+mercadopago>=3.6,<4.0          # SDK oficial de MP: Orders, customers, tarjetas y firma del webhook.
+requests>=2.31                 # Usado por `RawHttpClient` en shop/mp.py, y por los scripts de depuración `diag*.py`.
+urllib3>=2.0                   # Reintentos de `RawHttpClient`. Venía como dependencia transitiva de requests.
+python-dotenv>=1.0             # `load_dotenv` en settings.py: lee `backend/.env`.
+psycopg2-binary>=2.9           # Driver de PostgreSQL (el binario evita compilarlo).
+
+# Nota sobre CORS: `django-cors-headers` solo instala el middleware; lo que
+# autoriza de verdad es `CORS_ALLOWED_ORIGIN_REGEXES` en `config/settings.py:100`.
+# Nota sobre el SDK de MP: `shop/mp.py` habla con la API a través del SDK oficial
+# (`sdk.order()`, `sdk.customer()`, `sdk.card()`), no con `requests` a mano. El SDK
+# se normaliza en los helpers `_call`/`_ok` para que las vistas solo vean `MPError`.
+# El SDK de JS queda solo en el frontend.

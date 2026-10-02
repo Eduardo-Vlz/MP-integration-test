@@ -1,0 +1,76 @@
+# --- Credenciales -------------------------------------------------------------
+# Nunca se versionan. Las plantillas .example sí se versionan, así que se
+# desbloquean explícitamente al final de este bloque.
+.env
+.env.local
+.env.*.local
+.env.development.local
+.env.production.local
+.env.test.local
+
+# --- Python / Django ----------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+.venv/
+env/
+ENV/
+pip-wheel-metadata/
+
+# Django
+*.log
+db.sqlite3
+db.sqlite3-journal
+/backend/media/
+/backend/staticfiles/
+local_settings.py
+celerybeat-schedule*
+
+# Herramientas
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.dmypy.json
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+
+# --- Node / Next.js -----------------------------------------------------------
+node_modules/
+.pnpm-store/
+.next/
+out/
+next-env.d.ts
+.turbo/
+*.tsbuildinfo
+
+# Next.js ya trae su propio .gitignore; estos se repiten aquí para que el
+# repositorio esté bien ignorado aunque alguien borre ese archivo.
+certificates/
+
+# --- Sistema operativo y editores ---------------------------------------------
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# --- Herramientas locales -----------------------------------------------------
+.ngrok2/
+ngrok.exe
+*.tmp
+*.bak
+*.orig
+*.rej
+
+# --- Plantillas: SÍ se versionan ----------------------------------------------
+!.env.example
+!.env.local.example
